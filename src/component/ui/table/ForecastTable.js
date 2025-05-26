@@ -1,0 +1,40 @@
+import React, { useState, useEffect } from "react";
+
+export default function ForecastTable({airQuality}) {
+  const [isOpenDate, setIsOpenDate] = useState(false);
+  const [isOpenStation, setIsOpenStation] = useState(false);
+  const [selectedDate, setSelectedDate] = useState(null);
+  const [selectedStation, setSelectedStation] = useState("null");
+
+  const options = ["Station 1", "Station 2", "Station 3"];
+
+  return (
+    <div className="font-inter flex flex-col justify-start max-w-full p-6 bg-white border border-gray-200 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 cursor-pointer">
+      {/* Title */}
+      <div className="flex text-xl font-bold mb-4">Hourly Forecast</div>
+      {/* Sub Title */}
+      <div className="flex text-l">Hong Kong Air Quality Forecast</div>
+      {/* Table */}
+      <div className="flex flex-wrap justify-start gap-4 mt-4">
+        {airQuality.map((data, index) => (
+          <div
+            key={index}
+            className="flex-1 min-w-[150px] max-w-[200px] p-3 rounded-lg hover:bg-gray-50"
+          >
+            <div className="space-y-2 flex flex-col gap-y-2 items-center">
+              <p className="font-semibold text-gray-600">{data.time}</p>
+              <h1 className="font-semibold text-gray-600">AQI:</h1>
+              <h1 className="font-medium flex items-center justify-center w-12 h-8 bg-[#FFD400] rounded-md">
+                {data.aqi}
+              </h1>
+              <h1 className="font-semibold text-gray-600">PM 2.5:</h1>
+              <h1 className="font-medium">{data.pm2_5} µg/m³</h1>
+              <h1 className="font-semibold text-gray-600">Temp:</h1>
+              <h1 className="font-medium">{data.temperature}°C</h1>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
