@@ -11,17 +11,17 @@ export default function Forecast() {
 
   useEffect(() => {
     let airQualityList = [];
-    airQualityList.push(new AirQuality("00:00", 50, 20, "25°C"));
-    airQualityList.push(new AirQuality("00:01", 50, 20, "25°C"));
-    airQualityList.push(new AirQuality("00:02", 50, 20, "25°C"));
-    airQualityList.push(new AirQuality("00:03", 50, 20, "25°C"));
-    airQualityList.push(new AirQuality("00:04", 50, 20, "25°C"));
-    airQualityList.push(new AirQuality("00:05", 50, 20, "25°C"));
-    airQualityList.push(new AirQuality("00:06", 50, 20, "25°C"));
-    airQualityList.push(new AirQuality("00:07", 50, 20, "25°C"));
-    airQualityList.push(new AirQuality("00:08", 50, 20, "25°C"));
-    airQualityList.push(new AirQuality("00:09", 50, 20, "25°C"));
-    airQualityList.push(new AirQuality("00:10", 50, 20, "25°C"));
+    airQualityList.push(new AirQuality("00:00", 50, 20, "25"));
+    airQualityList.push(new AirQuality("00:01", 50, 20, "25"));
+    airQualityList.push(new AirQuality("00:02", 50, 20, "25"));
+    airQualityList.push(new AirQuality("00:03", 50, 20, "25"));
+    airQualityList.push(new AirQuality("00:04", 50, 20, "25"));
+    airQualityList.push(new AirQuality("00:05", 50, 20, "25"));
+    airQualityList.push(new AirQuality("00:06", 50, 20, "25"));
+    airQualityList.push(new AirQuality("00:07", 50, 20, "25"));
+    airQualityList.push(new AirQuality("00:08", 50, 20, "25"));
+    airQualityList.push(new AirQuality("00:09", 50, 20, "25"));
+    airQualityList.push(new AirQuality("00:10", 50, 20, "25"));
     setAirQuality(airQualityList);
   }, []);
 

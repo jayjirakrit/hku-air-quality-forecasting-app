@@ -3,19 +3,21 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@headlessui/react": "^2.2.4",
+    "@headlessui/tailwindcss": "^0.2.2",
     "@maptiler/marker-layout": "^2.0.1",
     "@maptiler/sdk": "^3.2.3",
     "@testing-library/dom": "^10.4.0",
     "@testing-library/jest-dom": "^6.6.3",
     "@testing-library/react": "^16.3.0",
     "@testing-library/user-event": "^13.5.0",
-    "leaflet": "^1.9.4",
-    "mapbox-gl": "^3.12.0",
-    "react": "^19.0.0-rc.1",
-    "react-dom": "^19.0.0-rc.1",
-    "react-leaflet": "^5.0.0-rc.2",
+    "@tremor/react": "^3.18.7",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-gauge-component": "^1.2.64",
     "react-router-dom": "^7.6.1",
     "react-scripts": "5.0.1",
+    "recharts": "^2.15.3",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
@@ -43,6 +45,9 @@
     ]
   },
   "devDependencies": {
+    "@tailwindcss/forms": "^0.5.10",
+    "autoprefixer": "^10.4.21",
+    "postcss": "^8.5.3",
     "tailwindcss": "^3.4.17"
   }
 }

@@ -19,14 +19,13 @@ export default function Home() {
   ];
   return (
     <>
-      <div className="min-h-screen flex flex-row">
+      {/* Breadcrumb */}
+      <div className="ml-20 flex mt-10">
+        <Breadcrumb title={title} />
+      </div>
+      <div className="min-h-screen flex">
         <div className="w-full md:w-2/5 flex flex-col justify-evenly ml-20">
-          {/* Breadcrumb */}
-          <div className="flex justify start">
-            <Breadcrumb title={title} />
-          </div>
-
-          {/* Feature Option */}
+          {/* Mode Option */}
           <Card
             title="Forecasting"
             description="Select this to view forecast data"
@@ -50,7 +49,7 @@ export default function Home() {
         {/* Home Title */}
         <div className="w-full md:w-3/5 flex flex-col justify-evenly items-center ml-24">
           <h1 className="home-title font-bold text-7xl text-gray-600">
-            HKU Aqj
+            HKU AQF
           </h1>
           <div className="home-img">
             <img src={HomeImg} className="max-w-lg" alt="Forecast" />
