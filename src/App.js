@@ -1,6 +1,5 @@
 import "./App.css";
 import React from "react";
-import "mapbox-gl/dist/mapbox-gl.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./component/home/Home";
 import Forecast from "./component/forecast/Forecast";

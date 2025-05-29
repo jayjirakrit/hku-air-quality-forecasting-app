@@ -78,7 +78,8 @@ export default function Analysis() {
               {aqiColors.map((aqiColor) => (
                 <div className="w-full md:w-1/6 flex flex-col items-center">
                   <div
-                    className={`w-12 h-12 rounded-full bg-[${aqiColor.color}]`}
+                    className="w-12 h-12 rounded-full"
+                    style={{ backgroundColor: aqiColor.color }}
                   ></div>
                   <p className="text-center text-xl">{aqiColor.value}</p>
                 </div>
@@ -87,23 +88,23 @@ export default function Analysis() {
           </div>
           {/* AQI Quality Particle */}
           <div className="w-full md:w-1/2 p-6 m-10 bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300">
-            <div className="text-left font-semibold text-xl text-gray-700 mb-5">
+            <div className="text-left font-semibold text-xl text-gray-700">
               AQI Quality Particles
               <span className="font-normal ml-2">µg/m³</span>
             </div>
-            <div className="flex flex-col justify-evenly gap-12">
+            <div className="h-full flex flex-col justify-evenly gap-2">
               {/* PM2.5 & NO */}
-              <div className="flex flex-row justify-evenly">
+              <div className="h-1/5 flex flex-row justify-evenly">
                 <AirQualityCard particle="PM2.5" value="25" />
                 <AirQualityCard particle="NO" value="25" />
               </div>
               {/* O3 & NO2 */}
-              <div className="flex flex-row justify-evenly">
+              <div className="h-1/5 flex flex-row justify-evenly">
                 <AirQualityCard particle="O3" value="25" />
                 <AirQualityCard particle="NO2" value="25" />
               </div>
               {/* SO2 & CO */}
-              <div className="flex flex-row justify-evenly">
+              <div className="h-1/5 flex flex-row justify-evenly">
                 <AirQualityCard particle="SO2" value="25" />
                 <AirQualityCard particle="CO" value="25" />
               </div>

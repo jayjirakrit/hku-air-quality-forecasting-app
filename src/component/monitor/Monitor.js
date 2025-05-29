@@ -28,7 +28,7 @@ export default function Monitor() {
         <h1 className="text-5xl text-gray-600 font-bold">Monitoring Mode</h1>
       </div>
       {/* Map Component */}
-      <Map height="650px" width="100%" />
+      <Map height="80vh" width="100%" />
     </div>
   );
 }

@@ -15,11 +15,11 @@ export default function Searchbar() {
     <div className="flex flex-row w-[450px] p-6 bg-white border border-gray-200 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 cursor-pointer">
       {/* Date Selection */}
       <div className="w-full md:w-1/2 flex flex-col">
-        <label className="block text-xl font-medium text-gray-700 mb-4">
+        <label className="flex block text-xl font-medium text-gray-700 ml-4 mb-4">
           Date:
         </label>
-        <div className="flex justify-center">
-          <div className="w-full md:w-5/6 relative flex justify-around rounded-md bg-white border border-gray-300">
+        <div className="flex">
+          <div className="w-full ml-4 md:w-5/6 relative flex justify-around rounded-md bg-white border border-gray-300">
             <div className="w-100% rounded-1-md px-4 py-2">Select Date</div>
             <div className="relative">
               <button
@@ -52,11 +52,11 @@ export default function Searchbar() {
 
       {/* Station Selection */}
       <div className="w-full md:w-1/2 flex flex-col">
-        <label className="block text-xl font-medium text-gray-700 mb-4">
+        <label className="flex block text-xl font-medium text-gray-700 mb-4 ml-4 ">
           Station:
         </label>
-        <div className="flex justify-center">
-          <div className="w-full md:w-5/6  relative flex justify-around rounded-md bg-white border border-gray-300">
+        <div className="flex">
+          <div className="w-full md:w-5/6 ml-4 relative flex justify-around rounded-md bg-white border border-gray-300">
             <div className="w-100% rounded-1-md px-4 py-2">Select Station</div>
             <div className="relative">
               <button

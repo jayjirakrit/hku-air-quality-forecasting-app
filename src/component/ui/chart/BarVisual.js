@@ -2,33 +2,29 @@ import { BarChart } from "@tremor/react";
 
 const chartdata = [
   {
-    name: "Amphibians",
-    "Number of threatened species": 2488,
+    name: "PM2.5",
+    "Number of Air Quality Particles": 75,
   },
   {
-    name: "Birds",
-    "Number of threatened species": 1445,
+    name: "NO",
+    "Number of Air Quality Particles": 70,
   },
   {
-    name: "Crustaceans",
-    "Number of threatened species": 743,
+    name: "O3",
+    "Number of Air Quality Particles": 65,
   },
   {
-    name: "Ferns",
-    "Number of threatened species": 281,
+    name: "NO2",
+    "Number of Air Quality Particles": 50,
   },
   {
-    name: "Arachnids",
-    "Number of threatened species": 251,
+    name: "SO2",
+    "Number of Air Quality Particles": 40,
   },
   {
-    name: "Corals",
-    "Number of threatened species": 232,
-  },
-  {
-    name: "Algae",
-    "Number of threatened species": 98,
-  },
+    name: "CO",
+    "Number of Air Quality Particles": 25,
+  }
 ];
 
 const dataFormatter = (number) =>
@@ -39,10 +35,10 @@ export default function BarVisual() {
     <BarChart
       data={chartdata}
       index="name"
-      categories={["Number of threatened species"]}
+      categories={["Number of Air Quality Particles"]}
       colors={["blue"]}
       valueFormatter={dataFormatter}
-      yAxisWidth={48}
+      yAxisWidth={45}
       onValueChange={(v) => console.log(v)}
     />
   );
