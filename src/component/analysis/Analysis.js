@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "./Analysis.css";
 import Breadcrumb from "../ui/breadcrumb/Breadcrumb";
 import BarVisual from "../ui/chart/BarVisual";
 import CircleVisual from "../ui/chart/CircleVisual";
 import AirQualityCard from "../ui/card/AirQualityCard";
+import { getRealTimeAirQuality, getRecommendation } from "../../service/AirQualityService";
 
 const aqiColors = [
   {
@@ -44,13 +45,37 @@ const titles = [
   },
 ];
 
-const recommmends = [
-  { image: "", value: "Sensitive groups should wear a mask outdoors" },
-  { image: "", value: "Sensitive groups should reduce outdoor exercise" },
-  { image: "", value: "Close your windows to avoid dirty outdoor air" },
-];
-
 export default function Analysis() {
+  const [airQuality, setAirQuality] = useState([]);
+  const [recommends, setRecommends] = useState([]);
+
+  const fetchRealTimeAirQuality = async () => {
+    try {
+      const response = await getRealTimeAirQuality("station");
+      setAirQuality(response);
+    } catch (err) {
+      // setError(err.message);
+    } finally {
+      // setLoading(false);
+    }
+  };
+
+    const fetchRecommendations = async () => {
+    try {
+      const response = await getRecommendation();
+      setRecommends(response);
+    } catch (err) {
+      // setError(err.message);
+    } finally {
+      // setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchRealTimeAirQuality();
+    fetchRecommendations();
+  }, []);
+
   return (
     <div className="ml-20 mr-20">
       {/* Breadcrumb */}
@@ -67,10 +92,10 @@ export default function Analysis() {
           {/* AQI Indicator */}
           <div className="w-full md:w-1/2 p-6 m-10 bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300">
             <h1 className="flex font-semibold text-xl text-gray-700">
-              AQI Indicator
+              AQHI Indicator
             </h1>
             <h3 className="flex text-gray-600">
-              Hong Kong Air Quality Indicator
+              Hong Kong Air Quality Health Indicator
             </h3>
             <CircleVisual />
             {/* Color Indicator */}
@@ -129,13 +154,13 @@ export default function Analysis() {
               Health Recommendation
             </h1>
             <div className="flex flex-col gap-8 justify-evenly">
-              {recommmends.map((recommmend) => (
+              {recommends.map((response) => (
                 <div className="flex w-full h-[95px] bg-[#F6F6F6]">
                   <div className="flex justify-center items-center w-full md:w-1/3">
                     <div className="w-full md:w-3/5 h-16 bg-[#D9D9D9]"></div>
                   </div>
                   <div className="flex justify-center items-center w-full md:w-2/3 text-xl">
-                    {recommmend.value}
+                    {response.recommend}
                   </div>
                 </div>
               ))}

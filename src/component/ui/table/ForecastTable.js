@@ -1,12 +1,6 @@
 import React, { useState, useEffect } from "react";
 
 export default function ForecastTable({airQuality}) {
-  const [isOpenDate, setIsOpenDate] = useState(false);
-  const [isOpenStation, setIsOpenStation] = useState(false);
-  const [selectedDate, setSelectedDate] = useState(null);
-  const [selectedStation, setSelectedStation] = useState("null");
-
-  const options = ["Station 1", "Station 2", "Station 3"];
 
   return (
     <div className="font-inter flex flex-col justify-start max-w-full p-6 bg-white border border-gray-200 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 cursor-pointer">

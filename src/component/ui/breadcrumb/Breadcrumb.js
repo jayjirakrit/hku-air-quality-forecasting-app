@@ -4,11 +4,15 @@ import { useNavigate } from "react-router-dom";
 export default function Breadcrumb({ title }) {
   const navigate = useNavigate();
   return (
-    <>
+    <div className="flex items-center">
       {title.map((data, index) => (
         <React.Fragment key={index}>
           <span
-            className="text-xl font-semibold text-gray-700 cursor-pointer"
+            className={`text-xl font-semibold cursor-pointer ${
+              data.currentPage 
+                ? "text-gray-700 hover:text-blue-500 underline underline-offset-4" 
+                : "text-gray-700 hover:text-blue-500 hover:underline hover:underline-offset-4"
+            }`}
             onClick={() => navigate(data.navigate)}
           >
             {data.page}
@@ -19,6 +23,6 @@ export default function Breadcrumb({ title }) {
           )}
         </React.Fragment>
       ))}
-    </>
+    </div>
   );
 }
