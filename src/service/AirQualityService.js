@@ -1,7 +1,8 @@
 import axios from "axios";
 import AirQuality from "../model/AirQuality";
 
-const API_BASE_URL = process.env.REACT_APP_API_BASE_URL;
+// const API_BASE_URL = process.env.REACT_APP_API_BASE_URL;
+const API_BASE_URL = "https://api-dot-hku-capstone-project-458309.df.r.appspot.com";
 
 export const getAirQualityForecast = async (dateInput, stationInput) => {
   try {
@@ -37,7 +38,7 @@ export const getRealTimeAirQuality = async () => {
   };
   try {
     const response = await axios.get(
-      `${API_BASE_URL}/real-time-air-quality`
+      `${API_BASE_URL}/api/real-time-air-quality`
     );
     const airQualityDatas = response.data.map(item => new AirQuality(item));
     return airQualityDatas;

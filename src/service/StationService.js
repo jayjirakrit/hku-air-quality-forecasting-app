@@ -1,10 +1,12 @@
 import axios from "axios";
 
-const API_BASE_URL = process.env.REACT_APP_API_BASE_URL;
+// const API_BASE_URL = process.env.REACT_APP_API_BASE_URL;
+const API_BASE_URL = "https://api-dot-hku-capstone-project-458309.df.r.appspot.com";
+
 
 export const getStations = async () => {
   try {
-    const response = await axios.get(`${API_BASE_URL}/stations`);
+    const response = await axios.get(`${API_BASE_URL}/api/stations`);
     return response.data;
     // const response = [
     //   { station: "Causeway Bay", latitude: 22.2798, longitude: 114.1831 },
