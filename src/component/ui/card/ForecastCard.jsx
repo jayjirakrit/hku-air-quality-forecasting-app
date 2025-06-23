@@ -1,11 +1,11 @@
-import React from "react";
+import React, { memo } from "react";
+import clsx from "clsx";
 
-export default function ForecastCard({ title, description, image, onClick }) {
+function ForecastCard({ title, description, image, onClick, className }) {
+  const internalClasses = "flex flex-row max-w-md p-6 bg-white border border-gray-200 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 cursor-pointer";
   return (
-    <div
-      className="flex flex-row max-w-md p-6 bg-white border border-gray-200 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 cursor-pointer"
-      onClick={onClick}
-    >
+    <div className={clsx(internalClasses, className)}
+     onClick={onClick}>
       <div className="mr-12 ml-2">
         <img src={image} className="max-w-28" alt="Forecast" />
       </div>
@@ -16,3 +16,5 @@ export default function ForecastCard({ title, description, image, onClick }) {
     </div>
   );
 }
+
+export default memo(ForecastCard);

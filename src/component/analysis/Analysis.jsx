@@ -4,7 +4,10 @@ import Breadcrumb from "../ui/breadcrumb/Breadcrumb";
 import BarVisual from "../ui/chart/BarVisual";
 import CircleVisual from "../ui/chart/CircleVisual";
 import AirQualityCard from "../ui/card/AirQualityCard";
-import { getRealTimeAirQuality, getRecommendation } from "../../service/AirQualityService";
+import {
+  getRealTimeAirQuality,
+  getRecommendation,
+} from "../../service/AirQualityService";
 
 const aqiColors = [
   {
@@ -32,7 +35,7 @@ const aqiColors = [
     value: "Hazardous",
   },
 ];
-const titles = [
+const title = [
   {
     page: "Home",
     navigate: "/",
@@ -60,7 +63,7 @@ export default function Analysis() {
     }
   };
 
-    const fetchRecommendations = async () => {
+  const fetchRecommendations = async () => {
     try {
       const response = await getRecommendation();
       setRecommends(response);
@@ -79,18 +82,16 @@ export default function Analysis() {
   return (
     <div className="ml-20 mr-20">
       {/* Breadcrumb */}
-      <div className="mt-10 mb-8 flex">
-        <Breadcrumb title={titles} />
-      </div>
+      <Breadcrumb title={title} className="mt-10 mb-8 flex" />
       {/* Title */}
       <div className="text-left mb-8 mt-10">
         <h1 className="text-5xl text-gray-600 font-bold">Analysis Mode</h1>
       </div>
       {/* Dashboard */}
       <div className="flex flex-col">
-        <div className="flex flex-row justify-evenly">
+        <div className="flex flex-col md:flex-row justify-evenly">
           {/* AQI Indicator */}
-          <div className="w-full md:w-1/2 p-6 m-10 bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300">
+          <div className="w-full md:w-1/2 p-6 m-[3%] bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300">
             <h1 className="flex font-semibold text-xl text-gray-700">
               AQHI Indicator
             </h1>
@@ -98,21 +99,21 @@ export default function Analysis() {
               Hong Kong Air Quality Health Indicator
             </h3>
             <CircleVisual />
-            {/* Color Indicator */}
-            <div className="flex justift-evenly mt-6 gap-4">
-              {aqiColors.map((aqiColor) => (
-                <div className="w-full md:w-1/6 flex flex-col items-center">
-                  <div
-                    className="w-12 h-12 rounded-full"
-                    style={{ backgroundColor: aqiColor.color }}
-                  ></div>
-                  <p className="text-center text-xl">{aqiColor.value}</p>
-                </div>
-              ))}
-            </div>
+              {/* Color Indicator */}
+              <div className="hidden md:flex justift-evenly mt-6 gap-4">
+                {aqiColors.map((aqiColor) => (
+                  <div className="w-full md:w-1/6 flex flex-col items-center">
+                    <div
+                      className="w-12 h-12 rounded-full"
+                      style={{ backgroundColor: aqiColor.color }}
+                    ></div>
+                    <p className="text-center text-md md:text-xl">{aqiColor.value}</p>
+                  </div>
+                ))}
+              </div>
           </div>
           {/* AQI Quality Particle */}
-          <div className="w-full md:w-1/2 p-6 m-10 bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300">
+          <div className="w-full md:w-1/2 p-6 m-[3%] bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300">
             <div className="text-left font-semibold text-xl text-gray-700">
               AQI Quality Particles
               <span className="font-normal ml-2">µg/m³</span>
@@ -137,9 +138,9 @@ export default function Analysis() {
           </div>
         </div>
 
-        <div className="flex flex-row justify-evenly">
+        <div className="flex flex-col md:flex-row justify-evenly">
           {/* Statistic Analysis */}
-          <div className="w-full md:w-1/2 p-6 m-10 bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300">
+          <div className="w-full md:w-1/2 p-6 m-[3%] bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300">
             <h1 className="flex font-semibold text-xl text-gray-700">
               Statistic Analysis
             </h1>
@@ -149,7 +150,7 @@ export default function Analysis() {
             <BarVisual />
           </div>
           {/* Health Recommendation */}
-          <div className="w-full md:w-1/2 p-6 m-10 bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300">
+          <div className="w-full md:w-1/2 p-6 m-[3%] bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300">
             <h1 className="flex font-semibold text-xl text-gray-700 mb-4">
               Health Recommendation
             </h1>
@@ -157,7 +158,7 @@ export default function Analysis() {
               {recommends.map((response) => (
                 <div className="flex w-full h-[95px] bg-[#F6F6F6]">
                   <div className="flex justify-center items-center w-full md:w-1/3">
-                    <div className="w-full md:w-3/5 h-16 bg-[#D9D9D9]"></div>
+                    <div className="w-3/5 h-16 bg-[#D9D9D9]"></div>
                   </div>
                   <div className="flex justify-center items-center w-full md:w-2/3 text-xl">
                     {response.recommend}

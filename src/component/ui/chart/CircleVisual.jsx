@@ -1,6 +1,7 @@
 import GaugeComponent from "react-gauge-component";
+import React, { memo } from "react";
 
-export default function CircleVisual() {
+function CircleVisual() {
   return (
     <>
       <GaugeComponent
@@ -90,3 +91,5 @@ export default function CircleVisual() {
     </>
   );
 }
+
+export default memo(CircleVisual);

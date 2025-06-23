@@ -1,7 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, { memo } from "react";
 
-export default function ForecastTable({airQuality}) {
-
+function ForecastTable({ airQuality }) {
   return (
     <div className="font-inter flex flex-col justify-start max-w-full p-6 bg-white border border-gray-200 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 cursor-pointer">
       {/* Title */}
@@ -32,3 +31,5 @@ export default function ForecastTable({airQuality}) {
     </div>
   );
 }
+
+export default memo(ForecastTable);

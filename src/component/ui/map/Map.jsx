@@ -3,22 +3,50 @@ import * as maptilersdk from "@maptiler/sdk";
 import "@maptiler/sdk/dist/maptiler-sdk.css";
 import "./Map.css";
 
+// Previous classification color (not used)
 const defineColor = (aqi) => {
-  switch(true) {
-    case aqi <= 1: return '#3EC4F1';
-    case aqi === 2: return '#2598C8';
-    case aqi === 3: return '#1B6999';
-    case aqi === 4: return '#EDEA3F';
-    case aqi === 5: return '#FBCB33';
-    case aqi === 6: return '#F59648';
-    case aqi === 7: return '#EC6969';
-    case aqi === 8: return '#E9222E';
-    case aqi === 9: return '#CE222F';
-    case aqi === 10: return '#CE222F';
-    case aqi > 10: return '#610F15';
-    default: return '#FFFFFF';
+  switch (true) {
+    case aqi <= 1:
+      return "#3EC4F1";
+    case aqi === 2:
+      return "#2598C8";
+    case aqi === 3:
+      return "#1B6999";
+    case aqi === 4:
+      return "#EDEA3F";
+    case aqi === 5:
+      return "#FBCB33";
+    case aqi === 6:
+      return "#F59648";
+    case aqi === 7:
+      return "#EC6969";
+    case aqi === 8:
+      return "#E9222E";
+    case aqi === 9:
+      return "#CE222F";
+    case aqi === 10:
+      return "#CE222F";
+    case aqi > 10:
+      return "#610F15";
+    default:
+      return "#FFFFFF";
   }
-}
+};
+
+const defineCol = (aqi) => {
+  switch (true) {
+    case 0 < aqi && aqi <= 3:
+      return "#B8E052";
+    case 3 < aqi && aqi <= 6:
+      return "#FBDD4B";
+    case 6 < aqi && aqi <= 10:
+      return "#FB9C05";
+    case 10 < aqi:
+      return "#FD5C01";
+    default:
+      return "#FFFFFF";
+  }
+};
 
 export default function Map({ airQualityDataList, height, width }) {
   const mapContainer = useRef(null);
@@ -30,12 +58,12 @@ export default function Map({ airQualityDataList, height, width }) {
 
   const circleDataList = useMemo(() => {
     return airQualityDataList.map((aq) => ({
-      id: `hk-${aq.station.replace(/\//g, '-')}`, // Replace slashes to avoid ID issues
+      id: `hk-${aq.station.replace(/\//g, "-")}`, // Replace slashes to avoid ID issues
       lat: aq.latitude,
       lng: aq.longitude,
       radiusKm: 5,
       text: aq.aqi,
-      color: defineColor(aq.aqi),
+      color: defineCol(aq.aqi),
       fillOpacity: 0.85,
     }));
   }, [airQualityDataList]);
@@ -65,7 +93,7 @@ export default function Map({ airQualityDataList, height, width }) {
 
     const updateMapData = () => {
       // Remove existing layers first
-      layersAdded.current.forEach(layerId => {
+      layersAdded.current.forEach((layerId) => {
         if (map.current.getLayer(layerId)) {
           map.current.removeLayer(layerId);
         }
@@ -73,7 +101,7 @@ export default function Map({ airQualityDataList, height, width }) {
       layersAdded.current.clear();
 
       // Remove existing sources
-      sourcesAdded.current.forEach(sourceId => {
+      sourcesAdded.current.forEach((sourceId) => {
         if (map.current.getSource(sourceId)) {
           map.current.removeSource(sourceId);
         }
@@ -155,7 +183,7 @@ export default function Map({ airQualityDataList, height, width }) {
     if (map.current.isStyleLoaded()) {
       updateMapData();
     } else {
-      map.current.once('load', updateMapData);
+      map.current.once("load", updateMapData);
     }
   }, [circleDataList]);
 

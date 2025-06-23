@@ -1,16 +1,18 @@
-import React from "react";
+import React, { memo } from "react";
 import { useNavigate } from "react-router-dom";
+import clsx from "clsx";
 
-export default function Breadcrumb({ title }) {
+function Breadcrumb({ title, className }) {
   const navigate = useNavigate();
+  const internalClasses = "flex items-center mb-[2%] mt-[3%]";
   return (
-    <div className="flex items-center">
+    <div className={clsx(internalClasses, className)}>
       {title.map((data, index) => (
         <React.Fragment key={index}>
           <span
             className={`text-xl font-semibold cursor-pointer ${
-              data.currentPage 
-                ? "text-gray-700 hover:text-blue-500 underline underline-offset-4" 
+              data.currentPage
+                ? "text-gray-700 hover:text-blue-500 underline underline-offset-4"
                 : "text-gray-700 hover:text-blue-500 hover:underline hover:underline-offset-4"
             }`}
             onClick={() => navigate(data.navigate)}
@@ -26,3 +28,5 @@ export default function Breadcrumb({ title }) {
     </div>
   );
 }
+
+export default memo(Breadcrumb);

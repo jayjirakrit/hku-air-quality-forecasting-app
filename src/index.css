@@ -18,6 +18,17 @@ body {
   );
 }
 
+/* Breakpoint for mobile screen */
+@media (max-width: 810px) {
+  body {
+  background: linear-gradient(
+    90deg,
+    rgba(255, 239, 135, 1) 100%,
+    rgba(237, 221, 83, 1) 62%
+  );
+  }
+}
+
 /* Import font (example for Google Fonts) */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap');
 

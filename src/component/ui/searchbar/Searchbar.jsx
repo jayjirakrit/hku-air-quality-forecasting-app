@@ -1,17 +1,15 @@
-import React, { useState, useEffect } from "react";
+import React, { memo } from "react";
 import { SearchSelect, SearchSelectItem, DatePicker } from "@tremor/react";
 
-export default function Searchbar({ stations, onDateChange, onStationChange }) {
+function Searchbar({ stations, onDateChange, onStationChange }) {
   const onSelectDate = (date) => {
     if (onDateChange) onDateChange(date);
   };
-
   const onSelectStation = (station) => {
     if (onStationChange) onStationChange(station);
   };
-
   return (
-    <div className="flex flex-row w-[450px] p-6 bg-white border border-gray-200 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 cursor-pointer">
+    <div className="flex flex-row w-full md:w-[450px] p-6 bg-white border border-gray-200 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 cursor-pointer">
       {/* Date Selection */}
       <div className="w-full md:w-1/2 flex flex-col">
         <label className="flex block text-xl font-medium text-gray-700 ml-4 mb-4">
@@ -54,3 +52,5 @@ export default function Searchbar({ stations, onDateChange, onStationChange }) {
     </div>
   );
 }
+
+export default memo(Searchbar);

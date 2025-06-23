@@ -1,4 +1,6 @@
 import { BarChart } from "@tremor/react";
+import React, {memo} from "react";
+
 
 const chartdata = [
   {
@@ -30,7 +32,7 @@ const chartdata = [
 const dataFormatter = (number) =>
   Intl.NumberFormat("us").format(number).toString();
 
-export default function BarVisual() {
+function BarVisual(chartData) {
   return (
     <BarChart
       data={chartdata}
@@ -43,3 +45,5 @@ export default function BarVisual() {
     />
   );
 }
+
+export default memo(BarVisual);

@@ -20,34 +20,35 @@ export default function Home() {
   return (
     <>
       {/* Breadcrumb */}
-      <div className="ml-20 flex mt-10">
-        <Breadcrumb title={title} />
-      </div>
-      <div className="min-h-screen flex">
-        <div className="w-full md:w-2/5 flex flex-col justify-evenly ml-20">
-          {/* Mode Option */}
+      <Breadcrumb title={title} className="flex ml-20 mb-[5%] mt-[2%]" />
+      <div className="min-h-screen mb-[3%] md:flex">
+        {/* Mode Option */}
+        <div className="w-full md:w-2/5 flex flex-col md:justify-around items-center md:items-start md:ml-20">
           <Card
             title="Forecasting"
             description="Select this to view forecast data"
             image={ForecastImg}
             onClick={() => navigate("/forecast")}
+            className="w-full mb-[10%] max-w-sm mx-auto md:max-w-md md:mx-[0]"
           />
           <Card
             title="Monitoring"
             description="Select this to monitor data"
             image={MonitorImg}
             onClick={() => navigate("/monitor")}
+            className="w-full mb-[10%] max-w-sm mx-auto md:max-w-md md:mx-[0]"
           />
           <Card
             title="Analysis"
             description="Select this to view analysis data"
             image={AnalysisImg}
             onClick={() => navigate("/analysis")}
+            className="w-full mb-[10%] max-w-sm mx-auto md:max-w-md md:mx-[0]"
           />
         </div>
 
         {/* Home Title */}
-        <div className="w-full md:w-3/5 flex flex-col justify-evenly items-center ml-24">
+        <div className="w-full md:w-3/5 flex flex-col md:justify-evenly items-center md:ml-24">
           <h1 className="home-title font-bold text-7xl text-gray-600">
             HKU AQF
           </h1>
