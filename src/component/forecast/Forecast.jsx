@@ -21,17 +21,22 @@ const title = [
 ];
 
 export default function Forecast() {
-  const [selectedDate, setSelectedDate] = useState(null);
   const [selectedStation, setSelectedStation] = useState("Select station");
   const [airQuality, setAirQuality] = useState([]);
   const [stations, setStations] = useState([]);
 
   const fetchAirQualityData = useCallback(async () => {
     try {
-      const response = await getAirQualityForecast(
-        selectedDate,
-        selectedStation
+      let response = await getAirQualityForecast(selectedStation);
+      response = response.filter(
+        (item) => {
+          return (
+            item.station?.toString()?.toUpperCase() ===
+            selectedStation.toUpperCase()
+          );
+        }
       );
+      console.log("response: " + response);
       // Update Air Quality State only reponse different
       if (!_.isEqual(airQuality, response)) {
         setAirQuality(response);
@@ -41,7 +46,7 @@ export default function Forecast() {
     } finally {
       // setLoading(false);
     }
-  }, [selectedDate, selectedStation, airQuality]);
+  }, [selectedStation, airQuality]);
 
   const fetchStations = useCallback(async () => {
     try {
@@ -50,10 +55,6 @@ export default function Forecast() {
       // console.log("response station" + JSON.stringify(responseStations));
       setStations(responseStations);
     } catch (err) {}
-  }, []);
-
-  const onDateChange = useCallback((date) => {
-    setSelectedDate(date);
   }, []);
 
   const onStationChange = useCallback((station) => {
@@ -65,13 +66,12 @@ export default function Forecast() {
   }, [airQuality]);
 
   useEffect(() => {
-    fetchAirQualityData();
     fetchStations();
   }, []);
 
   useEffect(() => {
     fetchAirQualityData();
-  }, [selectedDate, selectedStation, fetchAirQualityData]);
+  }, [selectedStation, fetchAirQualityData]);
 
   return (
     <div className="ml-20 mr-20 mb-[5%]">
@@ -85,11 +85,10 @@ export default function Forecast() {
         {/* Searach Bar */}
         <Searchbar
           stations={stations}
-          onDateChange={onDateChange}
           onSelectStation={onStationChange}
         />
         {/* AQI Result */}
-        <div className="flex flex-row justify-evenly w-full md:w-[320px] p-6 bg-[#FFE668] rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 cursor-pointer">
+        <div className="hidden lg:flex lg:flex-row justify-evenly w-[320px] p-6 bg-[#FFE668] rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 cursor-pointer">
           <div className="w-[90px] bg-[#E3BD02] text-2xl flex justify-center rounded-lg items-center font-bold">
             {memoCalculateAverages?.avgAqi ?? 0}
           </div>

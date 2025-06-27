@@ -89,9 +89,9 @@ export default function Analysis() {
       </div>
       {/* Dashboard */}
       <div className="flex flex-col">
-        <div className="flex flex-col md:flex-row justify-evenly">
+        <div className="flex flex-col lg:flex-row justify-evenly">
           {/* AQI Indicator */}
-          <div className="w-full md:w-1/2 p-6 m-[3%] bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300">
+          <div className="w-full lg:w-1/2 p-6 m-[3%] bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300">
             <h1 className="flex font-semibold text-xl text-gray-700">
               AQHI Indicator
             </h1>
@@ -100,20 +100,20 @@ export default function Analysis() {
             </h3>
             <CircleVisual />
               {/* Color Indicator */}
-              <div className="hidden md:flex justift-evenly mt-6 gap-4">
+              <div className="hidden lg:flex justift-evenly mt-6 gap-4">
                 {aqiColors.map((aqiColor) => (
-                  <div className="w-full md:w-1/6 flex flex-col items-center">
+                  <div className="w-full lg:w-1/6 flex flex-col items-center">
                     <div
                       className="w-12 h-12 rounded-full"
                       style={{ backgroundColor: aqiColor.color }}
                     ></div>
-                    <p className="text-center text-md md:text-xl">{aqiColor.value}</p>
+                    <p className="text-center text-md lg:text-xl">{aqiColor.value}</p>
                   </div>
                 ))}
               </div>
           </div>
           {/* AQI Quality Particle */}
-          <div className="w-full md:w-1/2 p-6 m-[3%] bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300">
+          <div className="w-full lg:w-1/2 p-6 m-[3%] bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300">
             <div className="text-left font-semibold text-xl text-gray-700">
               AQI Quality Particles
               <span className="font-normal ml-2">µg/m³</span>
@@ -138,9 +138,9 @@ export default function Analysis() {
           </div>
         </div>
 
-        <div className="flex flex-col md:flex-row justify-evenly">
+        <div className="flex flex-col lg:flex-row justify-evenly">
           {/* Statistic Analysis */}
-          <div className="w-full md:w-1/2 p-6 m-[3%] bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300">
+          <div className="w-full lg:w-1/2 p-6 m-[3%] bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300">
             <h1 className="flex font-semibold text-xl text-gray-700">
               Statistic Analysis
             </h1>
@@ -150,17 +150,17 @@ export default function Analysis() {
             <BarVisual />
           </div>
           {/* Health Recommendation */}
-          <div className="w-full md:w-1/2 p-6 m-[3%] bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300">
+          <div className="w-full lg:w-1/2 p-6 m-[3%] bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300">
             <h1 className="flex font-semibold text-xl text-gray-700 mb-4">
               Health Recommendation
             </h1>
             <div className="flex flex-col gap-8 justify-evenly">
               {recommends.map((response) => (
                 <div className="flex w-full h-[95px] bg-[#F6F6F6]">
-                  <div className="flex justify-center items-center w-full md:w-1/3">
+                  <div className="flex justify-center items-center w-full lg:w-1/3">
                     <div className="w-3/5 h-16 bg-[#D9D9D9]"></div>
                   </div>
-                  <div className="flex justify-center items-center w-full md:w-2/3 text-xl">
+                  <div className="flex justify-center items-center w-full lg:w-2/3 text-xl">
                     {response.recommend}
                   </div>
                 </div>

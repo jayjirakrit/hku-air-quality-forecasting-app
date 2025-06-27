@@ -1,32 +1,28 @@
 import axios from "axios";
 import AirQuality from "../model/AirQuality";
 
-// const API_BASE_URL = process.env.REACT_APP_API_BASE_URL;
-const API_BASE_URL = "https://api-dot-hku-capstone-project-458309.df.r.appspot.com";
+// const API_BASE_URL = "http://localhost:8000";
+const API_BASE_URL =
+  "https://api-dot-hku-capstone-project-458309.df.r.appspot.com";
 
-export const getAirQualityForecast = async (dateInput, stationInput) => {
+export const getAirQualityForecast = async (stationInput) => {
   try {
-    // const response = await axios.post(`${API_BASE_URL}/data`, {
-    //   params: {
-    //     date: dateInput,
-    //     station: stationInput,
-    //   },
-    // });
-    // return response.data;
-    const response = [
-      { time: "00:00", aqi: 50, pm2_5: 20, temperature: "25" },
-      { time: "00:01", aqi: 50, pm2_5: 20, temperature: "25" },
-      { time: "00:02", aqi: 50, pm2_5: 20, temperature: "25" },
-      { time: "00:03", aqi: 50, pm2_5: 20, temperature: "25" },
-      { time: "00:04", aqi: 50, pm2_5: 20, temperature: "25" },
-      { time: "00:05", aqi: 50, pm2_5: 20, temperature: "25" },
-      { time: "00:06", aqi: 50, pm2_5: 20, temperature: "25" },
-      { time: "00:07", aqi: 50, pm2_5: 20, temperature: "25" },
-    ];
-    return response;
+    const response = await axios.post(
+      `${API_BASE_URL}/api/forecast-air-quality`
+    );
+    const airQualityDatas = response.data.map((item) => {
+      return {
+        station: item.station,
+        time: item.time,
+        aqi: 50,
+        pm2_5: item.pm2_5,
+        temperature: "25",
+      };
+    });
+    return airQualityDatas;
   } catch (error) {
     console.error("Error fetching data:", error);
-    throw error;
+    return [];
   }
 };
 
@@ -40,7 +36,7 @@ export const getRealTimeAirQuality = async () => {
     const response = await axios.get(
       `${API_BASE_URL}/api/real-time-air-quality`
     );
-    const airQualityDatas = response.data.map(item => new AirQuality(item));
+    const airQualityDatas = response.data.map((item) => new AirQuality(item));
     return airQualityDatas;
   } catch (error) {
     console.error("Error fetching data:", error);

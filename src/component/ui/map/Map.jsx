@@ -3,36 +3,6 @@ import * as maptilersdk from "@maptiler/sdk";
 import "@maptiler/sdk/dist/maptiler-sdk.css";
 import "./Map.css";
 
-// Previous classification color (not used)
-const defineColor = (aqi) => {
-  switch (true) {
-    case aqi <= 1:
-      return "#3EC4F1";
-    case aqi === 2:
-      return "#2598C8";
-    case aqi === 3:
-      return "#1B6999";
-    case aqi === 4:
-      return "#EDEA3F";
-    case aqi === 5:
-      return "#FBCB33";
-    case aqi === 6:
-      return "#F59648";
-    case aqi === 7:
-      return "#EC6969";
-    case aqi === 8:
-      return "#E9222E";
-    case aqi === 9:
-      return "#CE222F";
-    case aqi === 10:
-      return "#CE222F";
-    case aqi > 10:
-      return "#610F15";
-    default:
-      return "#FFFFFF";
-  }
-};
-
 const defineCol = (aqi) => {
   switch (true) {
     case 0 < aqi && aqi <= 3:

@@ -22,7 +22,7 @@ export default function Monitor() {
 
   const fetchRealTimeAirQuality = async () => {
     const realtimeAQ = await getRealTimeAirQuality();
-    if (_.isEqual(realtimeAirQuality, realtimeAQ)) {
+    if (_.isEqual(realtimeAirQuality, realtimeAQ) || realtimeAQ != null) {
       setRealtimeAirQuality(realtimeAQ);
     }
   };
@@ -47,7 +47,7 @@ export default function Monitor() {
           width="100%"
         />
         {/* Classification Color */}
-        <div className="flex flex-col justify-evenly items-center w-[10%] h-[40%] z-2 rounded absolute bottom-6 right-6 font-bold bg-white shadow-md text-[0rem] sm:text-[0.5rem] md:text-sm">
+        <div className="flex flex-col justify-evenly items-center w-[10%] h-[40%] z-2 rounded absolute bottom-6 right-6 font-bold bg-white shadow-md text-[0rem] sm:text-[0.5rem] lg:text-sm">
           <div className="flex items-center justify-center bg-[#FD5C01] w-[80%] h-[14%] rounded">
             Unheathly
           </div>
