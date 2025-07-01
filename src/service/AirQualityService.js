@@ -1,10 +1,7 @@
 import axios from "axios";
 import AirQuality from "../model/AirQuality";
 
-// const API_BASE_URL = "http://localhost:8000";
-const API_BASE_URL =
-  "https://api-dot-hku-capstone-project-458309.df.r.appspot.com";
-
+const API_BASE_URL = "";
 export const getAirQualityForecast = async (stationInput) => {
   try {
     const response = await axios.post(

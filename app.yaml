@@ -1,4 +1,4 @@
-runtime: nodejs20 # Or appropriate Node.js version
+runtime: nodejs20
 env: standard
 handlers:
 - url: /static
@@ -7,5 +7,9 @@ handlers:
   static_files: build/\1
   upload: build/.*\.(json|ico|jpg|jpeg|png|gif|svg|webp|txt|css|js)$
 - url: /.*
-  static_files: build/index.html
-  upload: build/index.html
+  script: auto
+vpc_access_connector:
+  name: projects/hku-capstone-project-458309/locations/asia-east2/connectors/hku-vpc-connector-subnet
+env_variables:
+  BACKEND_VM_INTERNAL_IP: "10.170.0.30"
+  BACKEND_VM_PORT: "8000"

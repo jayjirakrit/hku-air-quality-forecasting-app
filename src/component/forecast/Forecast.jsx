@@ -36,7 +36,6 @@ export default function Forecast() {
           );
         }
       );
-      console.log("response: " + response);
       // Update Air Quality State only reponse different
       if (!_.isEqual(airQuality, response)) {
         setAirQuality(response);
@@ -81,7 +80,7 @@ export default function Forecast() {
       <div className="text-left mb-8 mt-10">
         <h1 className="text-5xl text-gray-600 font-bold">Forecasting Mode</h1>
       </div>
-      <div className="flex flex-col md:flex-row justify-between">
+      <div className="flex flex-col lg:flex-row justify-between">
         {/* Searach Bar */}
         <Searchbar
           stations={stations}

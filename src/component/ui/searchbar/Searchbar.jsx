@@ -11,9 +11,9 @@ function Searchbar({ stations, onDateChange, onSelectStation }) {
     year: "numeric",
   }).format(tomorrow);
   return (
-    <div className="flex flex-row w-full lg:w-[450px] p-6 bg-white border border-gray-200 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 cursor-pointer">
+    <div className="flex flex-col lg:flex-row w-full lg:w-[450px] p-6 bg-white border border-gray-200 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 cursor-pointer">
       {/* Date Selection */}
-      <div className="w-full lg:w-1/2 flex flex-col">
+      <div className="w-full lg:w-1/2 flex flex-col mb-[4%]">
         <label className="flex block text-xl font-medium text-gray-700 ml-4 mb-4">
           Date:
         </label>

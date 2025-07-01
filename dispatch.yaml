@@ -1,8 +1,1 @@
-dispatch:
-# Rule 1: Route all requests to paths starting with /api/ to api
-- url: "*/api/*"
-  service: api
-
-# Rule 2 (Optional but often useful): Route all other requests to the default service
-- url: "*/*"
-  service: default
+dispatch: []
