@@ -1,7 +1,7 @@
 import axios from "axios";
 import AirQuality from "../model/AirQuality";
 
-const API_BASE_URL = "http://localhost:8000";
+const API_BASE_URL = "";
 export const getAirQualityForecast = async (stationInput) => {
   try {
     const response = await axios.post(
