@@ -6,8 +6,11 @@ handlers:
 - url: /(.*\.(json|ico|jpg|jpeg|png|gif|svg|webp|txt|css|js))$
   static_files: build/\1
   upload: build/.*\.(json|ico|jpg|jpeg|png|gif|svg|webp|txt|css|js)$
-- url: /.*
+- url: /api/.*
   script: auto
+- url: /.*
+  static_files: build/index.html
+  upload: build/index.html
 vpc_access_connector:
   name: projects/hku-capstone-project-458309/locations/asia-east2/connectors/hku-vpc-connector-subnet
 env_variables:

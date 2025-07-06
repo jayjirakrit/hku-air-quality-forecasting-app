@@ -59,7 +59,7 @@ app.get("/api/real-time-analysis-air-quality", async (req, res) => {
   try {
     const backendUrl = `http://${BACKEND_VM_INTERNAL_IP}:${BACKEND_VM_PORT}/api/real-time-analysis-air-quality`;
     console.log(`[Proxy] GET /api/real-time-analysis-air-quality -> ${backendUrl}`);
-    const backendResponse = await axios.get(backendUrl, { params: req.query });
+    const backendResponse = await axios.get(backendUrl);
     res.status(backendResponse.status).json(backendResponse.data);
   } catch (error) {
     console.error(
