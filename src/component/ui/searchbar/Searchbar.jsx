@@ -1,15 +1,15 @@
 import React, { memo } from "react";
 import { SearchSelect, SearchSelectItem, DatePicker } from "@tremor/react";
 
-function Searchbar({ stations, onDateChange, onSelectStation }) {
+function Searchbar({ stations, onSelectStation, isToday }) {
   const today = new Date();
   const tomorrow = new Date();
   tomorrow.setDate(today.getDate() + 1);
-  const tomorrowFormated = new Intl.DateTimeFormat("en-US", {
+  const dateFormated = new Intl.DateTimeFormat("en-US", {
     month: "short",
     day: "numeric",
     year: "numeric",
-  }).format(tomorrow);
+  }).format(isToday === true ? today : tomorrow);
   return (
     <div className="flex flex-col lg:flex-row w-full lg:w-[450px] p-6 bg-white border border-gray-200 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 cursor-pointer">
       {/* Date Selection */}
@@ -19,10 +19,7 @@ function Searchbar({ stations, onDateChange, onSelectStation }) {
         </label>
         <div className="flex">
           <div className="w-full ml-4 lg:w-9/10 relative flex justify-around bg-white">
-            <DatePicker
-              placeholder={tomorrowFormated}
-              disabled
-            />
+            <DatePicker placeholder={dateFormated} disabled />
           </div>
         </div>
       </div>
@@ -41,7 +38,7 @@ function Searchbar({ stations, onDateChange, onSelectStation }) {
               {stations?.length > 0 ? (
                 stations.map((station, index) => (
                   <SearchSelectItem key={index} value={station.name}>
-                    {station.station}
+                    {station.name}
                   </SearchSelectItem>
                 ))
               ) : (

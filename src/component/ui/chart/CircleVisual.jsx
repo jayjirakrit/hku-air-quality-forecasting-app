@@ -1,7 +1,8 @@
 import GaugeComponent from "react-gauge-component";
 import React, { memo } from "react";
 
-function CircleVisual() {
+function CircleVisual({aqhi}) {
+  aqhi = aqhi ?? 0;
   return (
     <>
       <GaugeComponent
@@ -13,7 +14,7 @@ function CircleVisual() {
           // gradient: true,
           subArcs: [
             {
-              limit: 50,
+              limit: 3,
               color: "#00e400",
               showTick: true,
               tooltip: {
@@ -21,7 +22,7 @@ function CircleVisual() {
               },
             },
             {
-              limit: 100,
+              limit: 6,
               color: "#FFFF00",
               showTick: true,
               tooltip: {
@@ -29,7 +30,7 @@ function CircleVisual() {
               },
             },
             {
-              limit: 150,
+              limit: 10,
               color: "#FF7E00",
               showTick: true,
               tooltip: {
@@ -37,28 +38,11 @@ function CircleVisual() {
               },
             },
             {
-              limit: 200,
+              limit: 20,
               color: "#FF0000",
-              showTick: true,
+              // showTick: true,
               tooltip: {
                 text: "Unhealthy",
-              },
-            },
-
-            {
-              limit: 300,
-              showTick: true,
-              color: "#99004C",
-              tooltip: {
-                text: "Very Unhealthy",
-              },
-            },
-            {
-              limit: 500,
-              showTick: true,
-              color: "#4C0026",
-              tooltip: {
-                text: "Hazardous",
               },
             },
           ],
@@ -85,8 +69,8 @@ function CircleVisual() {
           },
         }}
         minValue={0}
-        value={25}
-        maxValue={500}
+        value={aqhi}
+        maxValue={20}
       />
     </>
   );

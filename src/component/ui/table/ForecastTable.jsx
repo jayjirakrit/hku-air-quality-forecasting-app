@@ -4,7 +4,7 @@ function ForecastTable({ airQuality }) {
   return (
     <div className="font-inter flex flex-col justify-start max-w-full p-6 bg-white border border-gray-200 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 cursor-pointer">
       {/* Title */}
-      <div className="text-left text-xl font-bold mb-4">Hourly Forecast</div>
+      <div className="text-left text-xl font-bold mb-4">Hourly Forecast (Next Day)</div>
       {/* Sub Title */}
       <div className="text-left">Hong Kong Air Quality Forecast</div>
       {/* Table */}

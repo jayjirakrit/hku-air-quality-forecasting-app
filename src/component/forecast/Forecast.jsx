@@ -85,6 +85,7 @@ export default function Forecast() {
         <Searchbar
           stations={stations}
           onSelectStation={onStationChange}
+          isToday={false}
         />
         {/* AQI Result */}
         <div className="hidden lg:flex lg:flex-row justify-evenly w-[320px] p-6 bg-[#FFE668] rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 cursor-pointer">
