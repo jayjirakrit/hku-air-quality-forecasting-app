@@ -2,7 +2,7 @@ import axios from "axios";
 import AirQuality from "../model/AirQuality";
 
 const API_BASE_URL = "";
-export const getAirQualityForecast = async (stationInput) => {
+export const getAirQualityForecast = async () => {
   try {
     const response = await axios.post(
       `${API_BASE_URL}/api/forecast-air-quality`

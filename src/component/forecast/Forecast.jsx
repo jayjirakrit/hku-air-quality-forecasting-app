@@ -21,37 +21,34 @@ const title = [
 ];
 
 export default function Forecast() {
-  const [selectedStation, setSelectedStation] = useState("Select station");
   const [airQuality, setAirQuality] = useState([]);
   const [stations, setStations] = useState([]);
+  const [selectedStation, setSelectedStation] = useState("Select station");
+  const [selectedAirQuality, setSelectedAirQuality] = useState([]);
 
   const fetchAirQualityData = useCallback(async () => {
     try {
-      let response = await getAirQualityForecast(selectedStation);
-      response = response.filter(
-        (item) => {
-          return (
-            item.station?.toString()?.toUpperCase() ===
-            selectedStation.toUpperCase()
-          );
-        }
-      );
-      // Update Air Quality State only reponse different
-      if (!_.isEqual(airQuality, response)) {
-        setAirQuality(response);
-      }
+      let response = await getAirQualityForecast();
+      setAirQuality(response);
     } catch (err) {
       // setError(err.message);
     } finally {
       // setLoading(false);
     }
-  }, [selectedStation, airQuality]);
+  }, []);
+
+const onAirQualityChange = useCallback(() => {
+    const aqChanged = airQuality?.filter((aq) => {
+      return (
+        aq.station?.toString()?.toUpperCase() === selectedStation?.toUpperCase()
+      );
+    });
+    setSelectedAirQuality(aqChanged);
+  }, [airQuality, selectedStation]);
 
   const fetchStations = useCallback(async () => {
     try {
-      // const responseStations = JSON.parse(localStorage.get("stations"));
       const responseStations = await getStations();
-      // console.log("response station" + JSON.stringify(responseStations));
       setStations(responseStations);
     } catch (err) {}
   }, []);
@@ -66,11 +63,13 @@ export default function Forecast() {
 
   useEffect(() => {
     fetchStations();
+    fetchAirQualityData();
   }, []);
 
   useEffect(() => {
-    fetchAirQualityData();
-  }, [selectedStation, fetchAirQualityData]);
+    onAirQualityChange()
+    // fetchAirQualityData();
+  }, [selectedStation, onAirQualityChange]);
 
   return (
     <div className="ml-20 mr-20 mb-[5%]">
@@ -99,7 +98,7 @@ export default function Forecast() {
       </div>
       {/* View Board */}
       <div className="mt-10">
-        <ForecastTable airQuality={airQuality} />
+        <ForecastTable airQuality={selectedAirQuality} />
       </div>
     </div>
   );

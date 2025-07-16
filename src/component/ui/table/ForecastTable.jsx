@@ -9,7 +9,7 @@ function ForecastTable({ airQuality }) {
       <div className="text-left">Hong Kong Air Quality Forecast</div>
       {/* Table */}
       <div className="flex flex-wrap justify-evenly gap-4 mt-4">
-        {airQuality.map((data, index) => (
+        {airQuality?.map((data, index) => (
           <div
             key={index}
             className="flex-1 min-w-[150px] max-w-[200px] p-3 rounded-lg hover:bg-gray-50"
