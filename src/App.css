@@ -52,3 +52,23 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
   monospace;
 }
+
+.bg-default {
+    background-color: white;
+}
+
+.bg-good {
+  background-color: #B8E052;
+}
+
+.bg-moderate {
+  background-color: #FBDD4B;
+}
+
+.bg-unhealthy {
+  background-color: #FB9C05;
+}
+
+.bg-very-unhealthy {
+  background-color: #FD5C01;
+}

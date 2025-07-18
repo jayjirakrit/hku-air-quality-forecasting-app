@@ -2,21 +2,7 @@ import React, { useRef, useEffect, useMemo } from "react";
 import * as maptilersdk from "@maptiler/sdk";
 import "@maptiler/sdk/dist/maptiler-sdk.css";
 import "./Map.css";
-
-const defineCol = (aqi) => {
-  switch (true) {
-    case 0 < aqi && aqi <= 3:
-      return "#B8E052";
-    case 3 < aqi && aqi <= 6:
-      return "#FBDD4B";
-    case 6 < aqi && aqi <= 10:
-      return "#FB9C05";
-    case 10 < aqi:
-      return "#FD5C01";
-    default:
-      return "#FFFFFF";
-  }
-};
+import { defineAQHIColor } from "../../../utility/CommonUtil";
 
 export default function Map({ airQualityDataList, height, width }) {
   const mapContainer = useRef(null);
@@ -33,7 +19,7 @@ export default function Map({ airQualityDataList, height, width }) {
       lng: aq.longitude,
       radiusKm: 5,
       text: aq.aqi,
-      color: defineCol(aq.aqi),
+      color: defineAQHIColor(aq.aqi),
       fillOpacity: 0.85,
     }));
   }, [airQualityDataList]);

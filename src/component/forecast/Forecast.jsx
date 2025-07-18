@@ -6,6 +6,7 @@ import Breadcrumb from "../ui/breadcrumb/Breadcrumb";
 import { getAirQualityForecast } from "../../service/AirQualityService";
 import { getStations } from "../../service/StationService";
 import _ from "lodash";
+import { defineAQHIColorCSS } from "../../utility/CommonUtil"; 
 
 const title = [
   {
@@ -28,8 +29,15 @@ export default function Forecast() {
 
   const fetchAirQualityData = useCallback(async () => {
     try {
-      let response = await getAirQualityForecast();
-      setAirQuality(response);
+      const cacheKey = "forecast_aq";
+      const cacheRaw = localStorage.getItem(cacheKey);
+      const cacheResult = cacheRaw ? JSON.parse(cacheRaw) : null;
+      if (cacheResult || cacheResult.data) {
+        setAirQuality(cacheResult.data);
+      } else {
+        const response = await getAirQualityForecast();
+        setAirQuality(response);
+      }
     } catch (err) {
       // setError(err.message);
     } finally {
@@ -37,7 +45,7 @@ export default function Forecast() {
     }
   }, []);
 
-const onAirQualityChange = useCallback(() => {
+  const onAirQualityChange = useCallback(() => {
     const aqChanged = airQuality?.filter((aq) => {
       return (
         aq.station?.toString()?.toUpperCase() === selectedStation?.toUpperCase()
@@ -58,8 +66,8 @@ const onAirQualityChange = useCallback(() => {
   }, []);
 
   const memoCalculateAverages = useMemo(() => {
-    return calculateAverages(airQuality);
-  }, [airQuality]);
+    return calculateAverages(selectedAirQuality);
+  }, [selectedAirQuality]);
 
   useEffect(() => {
     fetchStations();
@@ -67,7 +75,7 @@ const onAirQualityChange = useCallback(() => {
   }, []);
 
   useEffect(() => {
-    onAirQualityChange()
+    onAirQualityChange();
     // fetchAirQualityData();
   }, [selectedStation, onAirQualityChange]);
 
@@ -88,7 +96,7 @@ const onAirQualityChange = useCallback(() => {
         />
         {/* AQI Result */}
         <div className="hidden lg:flex lg:flex-row justify-evenly w-[320px] p-6 bg-[#FFE668] rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 cursor-pointer">
-          <div className="w-[90px] bg-[#E3BD02] text-2xl flex justify-center rounded-lg items-center font-bold">
+          <div className={`w-[90px] ${defineAQHIColorCSS(memoCalculateAverages?.avgAqi ?? 0)} text-2xl flex justify-center rounded-lg items-center font-bold`}>
             {memoCalculateAverages?.avgAqi ?? 0}
           </div>
           <h1 className="text-2xl flex justify-center items-center font-bold">
@@ -118,7 +126,7 @@ const calculateAverages = (airQualityData) => {
     },
     { aqi: 0, count: 0 }
   );
-  const avgAqi = sums.aqi / sums.count;
+  const avgAqi = Math.round(sums.aqi / sums.count);
   const avgAqiResult = avgAqi > 50 ? "High" : "Moderate";
 
   return {

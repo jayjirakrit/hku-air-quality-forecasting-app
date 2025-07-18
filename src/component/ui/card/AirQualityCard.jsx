@@ -1,5 +1,4 @@
 import React, { memo } from "react";
-import "./AirQualityCard.css";
 
 function AirQualityCard({ particle, value }) {
   const defineColor = (particle, value) => {

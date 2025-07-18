@@ -11,9 +11,8 @@ export const getAirQualityForecast = async () => {
       return {
         station: item.station,
         time: item.time,
-        aqi: 50,
-        pm2_5: item.pm2_5,
-        temperature: "25",
+        aqi: item.aqi,
+        pm2_5: item.pm2_5
       };
     });
     return airQualityDatas;
