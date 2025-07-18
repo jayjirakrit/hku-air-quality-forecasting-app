@@ -100,7 +100,7 @@ export default function Forecast() {
             {memoCalculateAverages?.avgAqi ?? 0}
           </div>
           <h1 className="text-2xl flex justify-center items-center font-bold">
-            {memoCalculateAverages?.avgAqiResult ?? "Calculating ..."}
+            {memoCalculateAverages?.avgAqiResult ?? "Please Select Station"}
           </h1>
         </div>
       </div>
