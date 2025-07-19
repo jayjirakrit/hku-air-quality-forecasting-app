@@ -2,11 +2,12 @@ import React, { useState, useEffect, useCallback, useMemo } from "react";
 import "./Forecast.css";
 import Searchbar from "../ui/searchbar/Searchbar";
 import ForecastTable from "../ui/table/ForecastTable";
+import ForecastTrend from "../ui/table/ForecastTrend";
 import Breadcrumb from "../ui/breadcrumb/Breadcrumb";
 import { getAirQualityForecast } from "../../service/AirQualityService";
 import { getStations } from "../../service/StationService";
 import _ from "lodash";
-import { defineAQHIColorCSS } from "../../utility/CommonUtil"; 
+import { defineAQHIColorCSS } from "../../utility/CommonUtil";
 
 const title = [
   {
@@ -26,6 +27,7 @@ export default function Forecast() {
   const [stations, setStations] = useState([]);
   const [selectedStation, setSelectedStation] = useState("Select station");
   const [selectedAirQuality, setSelectedAirQuality] = useState([]);
+  const [toggleEnabled, setToggleEnabled] = useState(true);
 
   const fetchAirQualityData = useCallback(async () => {
     try {
@@ -93,10 +95,16 @@ export default function Forecast() {
           stations={stations}
           onSelectStation={onStationChange}
           isToday={false}
+          toggleEnabled={toggleEnabled}
+          onToggleEnabled={setToggleEnabled}
         />
         {/* AQI Result */}
         <div className="hidden lg:flex lg:flex-row justify-evenly w-[320px] p-6 bg-[#FFE668] rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 cursor-pointer">
-          <div className={`w-[90px] ${defineAQHIColorCSS(memoCalculateAverages?.avgAqi ?? 0)} text-2xl flex justify-center rounded-lg items-center font-bold`}>
+          <div
+            className={`w-[90px] ${defineAQHIColorCSS(
+              memoCalculateAverages?.avgAqi ?? 0
+            )} text-2xl flex justify-center rounded-lg items-center font-bold`}
+          >
             {memoCalculateAverages?.avgAqi ?? 0}
           </div>
           <h1 className="text-2xl flex justify-center items-center font-bold">
@@ -106,7 +114,11 @@ export default function Forecast() {
       </div>
       {/* View Board */}
       <div className="mt-10">
-        <ForecastTable airQuality={selectedAirQuality} />
+        {toggleEnabled ? (
+          <ForecastTable airQuality={selectedAirQuality} />
+        ) : (
+          <ForecastTrend airQuality={selectedAirQuality} />
+        )}
       </div>
     </div>
   );
