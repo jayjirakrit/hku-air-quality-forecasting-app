@@ -99,18 +99,20 @@ export default function Forecast() {
           onToggleEnabled={setToggleEnabled}
         />
         {/* AQI Result */}
-        <div className="hidden lg:flex lg:flex-row justify-evenly w-[320px] p-6 bg-[#FFE668] rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 cursor-pointer">
-          <div
-            className={`w-[90px] ${defineAQHIColorCSS(
-              memoCalculateAverages?.avgAqi ?? 0
-            )} text-2xl flex justify-center rounded-lg items-center font-bold`}
-          >
-            {memoCalculateAverages?.avgAqi ?? 0}
+        {toggleEnabled ? (
+          <div className="hidden lg:flex lg:flex-row justify-evenly w-[320px] p-6 bg-[#FFE668] rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 cursor-pointer">
+            <div
+              className={`w-[90px] ${defineAQHIColorCSS(
+                memoCalculateAverages?.avgAqi ?? 0
+              )} text-2xl flex justify-center rounded-lg items-center font-bold`}
+            >
+              {memoCalculateAverages?.avgAqi ?? 0}
+            </div>
+            <h1 className="text-2xl flex justify-center items-center font-bold">
+              {memoCalculateAverages?.avgAqiResult ?? "Please Select Station"}
+            </h1>
           </div>
-          <h1 className="text-2xl flex justify-center items-center font-bold">
-            {memoCalculateAverages?.avgAqiResult ?? "Please Select Station"}
-          </h1>
-        </div>
+        ) : null}
       </div>
       {/* View Board */}
       <div className="mt-10">
